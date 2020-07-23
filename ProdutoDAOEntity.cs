@@ -8,28 +8,36 @@ namespace Alura.Loja.Testes.ConsoleApp
 {
     class ProdutoDAOEntity : IProdutoDAO, IDisposable
     {
+        private LojaContext context;
+        public ProdutoDAOEntity()
+        {
+            this.context = new LojaContext();
+        }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            context.Dispose();
         }
         public void Adicionar(Produto produto)
         {
-            throw new NotImplementedException();
+            context.Produtos.Add(produto);
+            context.SaveChanges();
         }
 
         public void Atualizar(Produto produto)
         {
-            throw new NotImplementedException();
+            context.Produtos.Update(produto);
+            context.SaveChanges();
         }
 
         public IList<Produto> Produtos()
         {
-            throw new NotImplementedException();
+            return context.Produtos.ToList();
         }
 
         public void Remover(Produto produto)
         {
-            throw new NotImplementedException();
+            context.Produtos.Remove(produto);
+            context.SaveChanges();
         }
     }
 }
